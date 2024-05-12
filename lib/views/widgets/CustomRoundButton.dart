@@ -9,7 +9,11 @@ class CustomRoundButton extends StatelessWidget {
     required this.radius,
     this.buttonColor,
     this.onTap,
-    this.icon, required this.buttomName, this.textcolor, required this.textFont, this.iconColor,
+    this.icon,
+    required this.buttomName,
+    this.textcolor,
+    required this.textFont,
+    this.iconColor,
   }) : super(key: key);
 
   final double height;
@@ -26,6 +30,7 @@ class CustomRoundButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.green,
       onTap: onTap,
       child: Container(
         width: width,
@@ -37,10 +42,17 @@ class CustomRoundButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Icon(icon ?? Icons.abc_sharp,
-            color:iconColor?? Colors.purple.shade400,
+            Icon(
+              icon ?? Icons.abc_sharp,
+              color: iconColor ?? Colors.purple.shade400,
             ),
-            Text(buttomName,style: TextStyle(color: textcolor,fontSize: textFont,fontWeight: FontWeight.bold),)
+            Text(
+              buttomName,
+              style: TextStyle(
+                  color: textcolor,
+                  fontSize: textFont,
+                  fontWeight: FontWeight.bold),
+            )
           ],
         ),
       ),
