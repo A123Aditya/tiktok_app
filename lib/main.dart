@@ -6,11 +6,12 @@ import 'package:tiktok_app/constants.dart';
 import 'package:tiktok_app/controllers/auth_controller.dart';
 import 'package:tiktok_app/views/screens/auth/login_screen.dart';
 
+import 'views/screens/add_videoScreen_post.dart';
 import 'views/screens/auth/signup_screen.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp().then((value){
+  await Firebase.initializeApp().then((value) {
     Get.put(AuthController());
   });
   runApp(const MyApp());
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData.dark()
                 .copyWith(scaffoldBackgroundColor: backgroundColor),
-            home: LoginScreen(),
-            // home: SignUpScreen(),
+            // home: LoginScreen(),
+            home: AddVideoScreen(),
           );
         });
   }

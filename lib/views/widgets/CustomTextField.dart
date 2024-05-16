@@ -63,9 +63,6 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
-
-
-
 class CustomPasswordField extends StatelessWidget {
   const CustomPasswordField({
     Key? key,
@@ -116,7 +113,7 @@ class CustomPasswordField extends StatelessWidget {
           contentPadding: EdgeInsets.only(
             left: leftpadding ?? 16.w,
             top: toppadding ?? 16.h,
-            right: rightpadding ?? 191.w,
+            // right: rightpadding ?? 191.w,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius),
@@ -135,4 +132,3 @@ class CustomPasswordField extends StatelessWidget {
     );
   }
 }
-

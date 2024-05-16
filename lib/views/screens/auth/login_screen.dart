@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController _passwordController = TextEditingController();
   RxBool _isobsecure = true.obs;
-
+  RxBool isloading = false.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,23 +149,38 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 35.w, right: 30.w, top: 50.h),
-            child: InkWell(
-              onTap: () {
-                authcontroller.loginUser(
-                    _emailController.text, _passwordController.text);
-              },
-              child: CustomRoundedEdgeContainer(
-                height: 56.h,
-                width: 327.w,
-                radius: 32.r,
-                containerColor: Color(0xFFF8623A),
-                text: "Sign In",
-                textColor: primarytextColor,
-                textfontSize: 16.sp,
-              ),
-            ),
-          ),
+              padding: EdgeInsets.only(left: 35.w, right: 30.w, top: 50.h),
+              child: Obx(
+                () => InkWell(
+                  onTap: () {
+                    authcontroller.isloginTapped.value = true;
+
+                    authcontroller.loginUser(
+                        _emailController.text, _passwordController.text);
+                    // isloading.value = false;
+                  },
+                  child: authcontroller.isloginTapped.isTrue
+                      ? Container(
+                          height: 56.h,
+                          width: 327.w,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32.r),
+                              color: Color(0xFFF8623A)),
+                          child: const Center(
+                              child: CircularProgressIndicator(
+                            color: Colors.white,
+                          )))
+                      : CustomRoundedEdgeContainer(
+                          height: 56.h,
+                          width: 327.w,
+                          radius: 32.r,
+                          containerColor: Color(0xFFF8623A),
+                          text: "Sign In",
+                          textColor: primarytextColor,
+                          textfontSize: 16.sp,
+                        ),
+                ),
+              )),
           SizedBox(
             height: 24.h,
           ),

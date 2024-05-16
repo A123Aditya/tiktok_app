@@ -1,5 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok_app/constants.dart';
+import 'package:tiktok_app/views/screens/add_videoScreen_post.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -9,14 +11,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List text = ["Aditya", "Ayush", "ram", "Shyam", "Lakshman"];
+  // List text = ["Aditya", "Ayush", "ram", "Shyam", "Lakshman"];
 
-  int currentPageIndex = 2;
+  int currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
+      body: pages[currentPageIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.deepPurple,
         color: Colors.deepPurple.shade200,
@@ -25,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             currentPageIndex = ind;
           });
         },
-        index: 2,
+        // index: 2,
         items: [
           Icon(
             Icons.home,
@@ -49,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Center(child: Text(text[currentPageIndex])),
     );
   }
 }
