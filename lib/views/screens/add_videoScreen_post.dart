@@ -76,7 +76,9 @@ class AddVideoScreen extends StatelessWidget {
               ),
             ),
             SimpleDialogOption(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: Row(
                 children: [
                   ClipRRect(
