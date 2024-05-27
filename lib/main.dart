@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData.dark()
                 .copyWith(scaffoldBackgroundColor: backgroundColor),
-            // home: LoginScreen(),
-            home: AddVideoScreen(),
+            home: LoginScreen(),
+            // home: AddVideoScreen(),
           );
         });
   }

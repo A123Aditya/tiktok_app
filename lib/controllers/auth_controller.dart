@@ -15,25 +15,25 @@ class AuthController extends GetxController {
   late Rx<User?> _user;
   RxBool isloginTapped = false.obs;
 
-  // @override
-  // void onReady() {
-  //   // TODO: implement onReady
-  //   super.onReady();
-  //   _user = Rx<User?>(firebaseAuth.currentUser);
-  //   _user.bindStream(firebaseAuth.authStateChanges());
-  //   ever(
-  //     _user,
-  //     _setInitialScreen,
-  //   );
-  // }
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    _user = Rx<User?>(firebaseAuth.currentUser);
+    _user.bindStream(firebaseAuth.authStateChanges());
+    ever(
+      _user,
+      _setInitialScreen,
+    );
+  }
 
-  // _setInitialScreen(User? user) {
-  //   if (user == null) {
-  //     Get.offAll(() => LoginScreen());
-  //   } else {
-  //     Get.offAll(() => HomeScreen());
-  //   }
-  // }
+  _setInitialScreen(User? user) {
+    if (user == null) {
+      Get.offAll(() => LoginScreen());
+    } else {
+      Get.offAll(() => HomeScreen());
+    }
+  }
 
   // pickImage
   late Rx<File?> _pickedImage;
@@ -80,8 +80,7 @@ class AuthController extends GetxController {
             .collection('users')
             .doc(cred.user!.uid)
             .set(user.toJson());
-      } else {
-        Get.snackbar("error in Creating account", "Please Enter all fields");
+        Get.back();
       }
     } catch (e) {
       Get.snackbar("error in Creating account", e.toString());

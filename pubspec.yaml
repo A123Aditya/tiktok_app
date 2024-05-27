@@ -43,6 +43,8 @@ dependencies:
   video_compress: ^3.1.2
   cupertino_icons: ^1.0.6
   video_player: ^2.8.6
+  liquid_progress_indicator_v2: ^0.5.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

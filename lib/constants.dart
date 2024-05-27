@@ -4,7 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok_app/controllers/auth_controller.dart';
+import 'package:tiktok_app/views/screens/video_screen.dart';
 
+import 'controllers/uploadVideo_controller.dart';
 import 'views/screens/Profile_screen.dart';
 import 'views/screens/add_videoScreen_post.dart';
 import 'views/screens/home_Screen.dart';
@@ -17,13 +19,16 @@ const primarytextColor = Colors.white;
 const secondarytextColor = Colors.black;
 var tertiarytextColor = Colors.red[400];
 
+// Icons Size
+double IconsSize = 35;
+
 // Pages
 List<Widget> pages = [
   const ProfileScreen(),
   HomeScreen(),
-   AddVideoScreen(),
-   ProfileScreen(),
-   AddVideoScreen(),
+  AddVideoScreen(),
+  VideoScreen(),
+  AddVideoScreen(),
 ];
 
 // Screen Size
@@ -37,3 +42,4 @@ var fireStore = FirebaseFirestore.instance;
 
 // Controllers
 var authcontroller = AuthController.instance;
+// var videocontroller = UploadvideoController.instance;
