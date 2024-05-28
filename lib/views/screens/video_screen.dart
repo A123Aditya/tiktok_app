@@ -1,7 +1,10 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_app/controllers/video_controller.dart';
+import 'package:tiktok_app/views/screens/comment_screen.dart';
 import 'package:tiktok_app/views/widgets/video_player_item.dart';
 
 import '../../constants.dart';
@@ -14,8 +17,7 @@ class VideoScreen extends StatefulWidget {
   State<VideoScreen> createState() => _VideoScreenState();
 }
 
-class _VideoScreenState extends State<VideoScreen>
-    with AutomaticKeepAliveClientMixin<VideoScreen> {
+class _VideoScreenState extends State<VideoScreen> {
   final VideoController videoController = Get.put(VideoController());
 
   buildProfile(String ImageUrl) {
@@ -30,9 +32,16 @@ class _VideoScreenState extends State<VideoScreen>
     );
   }
 
+  // void showComments(String videoId) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     isScrollControlled: true,
+  //     builder: (context) => CommentSection(id: videoController.videoList.toString(),),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Obx(() => PageView.builder(
           scrollDirection: Axis.vertical,
           itemCount: videoController.videoList.length,
@@ -41,6 +50,18 @@ class _VideoScreenState extends State<VideoScreen>
           ),
           itemBuilder: (context, index) {
             final data = videoController.videoList[index];
+            void showComments(String videoId) {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => CommentSection(
+                  id: data.id,
+                  profilePics: data.profilePhoto,
+                  userName: data.userName,
+                ),
+              );
+            }
+
             return Stack(
               children: [
                 VideoPlayerItem(videoUrl: data.videoUrl),
@@ -92,23 +113,36 @@ class _VideoScreenState extends State<VideoScreen>
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  height: 54.h,
-                                  width: 41.w,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              "assets/Icons/love.png"))),
+                                InkWell(
+                                  onTap: () =>
+                                      videoController.likeVideo(data.id),
+                                  child: data.likes
+                                          .contains(authcontroller.user.uid)
+                                      ? Container(
+                                          height: 54.h,
+                                          width: 41.w,
+                                          decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/Icons/heart.png"))),
+                                        )
+                                      : Container(
+                                          height: 54.h,
+                                          width: 41.w,
+                                          decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/Icons/love.png"))),
+                                        ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                     left: 20,
                                   ),
                                   child: Container(
                                     width: 41.w,
                                     child: Text(
-                                      "0",
-                                      //data.likes.length.toString(),
+                                      data.likes.length.toString(),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
@@ -117,18 +151,21 @@ class _VideoScreenState extends State<VideoScreen>
                             ),
                           ),
                         ),
-                        Container(
-                          height: 54.h,
-                          width: 41.w,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/Icons/speech-bubble.png"))),
+                        InkWell(
+                          onTap: () => showComments(data.id),
+                          child: Container(
+                            height: 54.h,
+                            width: 41.w,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/Icons/speech-bubble.png"))),
+                          ),
                         ),
                         Container(
                           height: 54.h,
                           width: 41.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage("assets/Icons/share.png"))),
                         ),
@@ -143,10 +180,6 @@ class _VideoScreenState extends State<VideoScreen>
           },
         ));
   }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }
 
 buildMusicAlbum(String s) {
@@ -155,7 +188,7 @@ buildMusicAlbum(String s) {
     width: 49.w,
     decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(s)),
-        gradient: LinearGradient(colors: [Colors.white, Colors.yellow]),
+        gradient: const LinearGradient(colors: [Colors.white, Colors.yellow]),
         shape: BoxShape.circle),
   );
 }

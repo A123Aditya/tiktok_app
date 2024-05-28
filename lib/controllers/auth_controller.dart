@@ -14,6 +14,7 @@ class AuthController extends GetxController {
 
   late Rx<User?> _user;
   RxBool isloginTapped = false.obs;
+  User get user => _user.value!;
 
   @override
   void onReady() {
