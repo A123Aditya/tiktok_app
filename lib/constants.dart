@@ -10,6 +10,7 @@ import 'controllers/uploadVideo_controller.dart';
 import 'views/screens/Profile_screen.dart';
 import 'views/screens/add_videoScreen_post.dart';
 import 'views/screens/home_Screen.dart';
+import 'views/screens/search_screen.dart';
 
 // COLORS
 const backgroundColor = Colors.black;
@@ -24,11 +25,13 @@ double IconsSize = 35;
 
 // Pages
 List<Widget> pages = [
-  const ProfileScreen(),
-  HomeScreen(),
-  AddVideoScreen(),
   VideoScreen(),
+  SearchScreen(),
   AddVideoScreen(),
+  ProfileScreen(
+    uid: authcontroller.user.uid,
+  ),
+  // AddVideoScreen(),
 ];
 
 // Screen Size

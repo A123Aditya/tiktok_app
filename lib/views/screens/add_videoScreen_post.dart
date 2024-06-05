@@ -8,15 +8,17 @@ import 'package:tiktok_app/views/screens/confirm_screen.dart';
 
 class AddVideoScreen extends StatelessWidget {
   AddVideoScreen({super.key});
-  late XFile videofile ;
+  late XFile videofile;
   pickVideo(ImageSource src, BuildContext context) async {
-    final  video = await ImagePicker().pickVideo(source: src);
+    final video = await ImagePicker().pickVideo(source: src);
     if (video != null) {
       videofile = video;
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ConfirmScreen(videofile: videofile,),
+            builder: (context) => ConfirmScreen(
+              videofile: videofile,
+            ),
           ));
     }
   }
@@ -118,7 +120,7 @@ class AddVideoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple.shade100,
+      backgroundColor: Colors.white,
       body: Center(
         child: Text("Post a video"),
       ),

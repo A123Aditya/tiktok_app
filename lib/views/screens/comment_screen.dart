@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tiktok_app/constants.dart';
 import 'package:tiktok_app/controllers/comment_controller.dart';
+import 'package:timeago/timeago.dart' as tago;
 
 class CommentSection extends StatefulWidget {
   final String id;
@@ -65,15 +68,60 @@ class _CommentSectionState extends State<CommentSection> {
                         final comment = commentController.comments[index];
                         return ListTile(
                           leading: CircleAvatar(
-                            backgroundImage: NetworkImage(widget.profilePics),
+                            backgroundImage: NetworkImage(comment.profilePhoto),
                           ),
                           title: Text(
-                            widget.userName,
+                            comment.username,
                             style: TextStyle(color: Colors.white),
                           ),
-                          subtitle: Text(
-                            comment.toString(),
-                            style: TextStyle(color: Colors.white),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                comment.comment,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                      tago.format(
+                                          comment.datepublished.toDate()),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10.sp)),
+                                  SizedBox(
+                                    width: 50.w,
+                                  ),
+                                  InkWell(
+                                    onTap: () => commentController
+                                        .likeComment(comment.id),
+                                    child: comment.likes
+                                            .contains(authcontroller.user.uid)
+                                        ? Container(
+                                            width: 15.w,
+                                            height: 15.h,
+                                            decoration: const BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "assets/Icons/heart.png"))),
+                                          )
+                                        : Container(
+                                            width: 15.w,
+                                            height: 15.h,
+                                            decoration: const BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "assets/Icons/love.png"))),
+                                          ),
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Text(comment.likes.length.toString())
+                                ],
+                              )
+                            ],
                           ),
                         );
                       },

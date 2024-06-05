@@ -136,8 +136,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                         ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
+                                  padding: EdgeInsets.only(
+                                    left: 20.w,
                                   ),
                                   child: Container(
                                     width: 41.w,
@@ -153,13 +153,27 @@ class _VideoScreenState extends State<VideoScreen> {
                         ),
                         InkWell(
                           onTap: () => showComments(data.id),
-                          child: Container(
-                            height: 54.h,
-                            width: 41.w,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/Icons/speech-bubble.png"))),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 54.h,
+                                width: 41.w,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            "assets/Icons/speech-bubble.png"))),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 20.w),
+                                child: Container(
+                                  width: 41.w,
+                                  child: Text(
+                                    data.commentCount.toString(),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Container(

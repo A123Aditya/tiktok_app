@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tiktok_app/constants.dart';
 import 'package:tiktok_app/views/screens/add_videoScreen_post.dart';
 
@@ -18,11 +19,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
       body: pages[currentPageIndex],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.deepPurple,
-        color: Colors.deepPurple.shade200,
+        backgroundColor: Colors.white,
+        color: Colors.white,
+        // color: Colors.white24
+        //     .withOpacity(1)
+        //     .withAlpha(
+        //       200,
+        //     )
+        //     .withBlue(255)
+        //     .withRed(240),
         onTap: (ind) {
           setState(() {
             currentPageIndex = ind;
@@ -30,26 +37,42 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         // index: 2,
         items: [
-          Icon(
-            Icons.home,
-            color: Colors.black,
+          Container(
+            height: 40.h,
+            width: 40.w,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/Icons/home.png"))),
           ),
-          Icon(
-            Icons.search,
-            color: Colors.black,
+          Container(
+            height: 40.h,
+            width: 40.w,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                        "assets/Icons/search-interface-symbol.png"))),
           ),
-          Icon(
-            Icons.post_add,
-            color: Colors.black,
+          Container(
+            height: 40.h,
+            width: 40.w,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/Icons/video.png"))),
           ),
-          Icon(
-            Icons.message,
-            color: Colors.black,
+          Container(
+            height: 40.h,
+            width: 40.w,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/Icons/user.png"))),
           ),
-          Icon(
-            Icons.person,
-            color: Colors.black,
-          ),
+          // Container(
+          //   height: 40.h,
+          //   width: 40.w,
+          //   decoration: BoxDecoration(
+          //       image: DecorationImage(
+          //           image: AssetImage("assets/Icons/home.png"))),
+          // ),
         ],
       ),
     );

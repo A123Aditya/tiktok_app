@@ -6,9 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:video_player/video_player.dart';
-
 import 'package:tiktok_app/controllers/uploadVideo_controller.dart';
-
 import '../../constants.dart';
 
 class ConfirmScreen extends StatefulWidget {
@@ -45,7 +43,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink.shade100.withOpacity(0.1),
+      backgroundColor: Colors.white,
       body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -107,11 +105,11 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                     width: IconsSize.w,
                     child: _videoPlayerController.value.isPlaying
                         ? Image.asset(
-                            "assets/Icons/pause.png",
+                            "assets/Icons/video-pause-button.png",
                             // fit: BoxFit.cover,
                           )
                         : Image.asset(
-                            "assets/Icons/play.png",
+                            "assets/Icons/play-button.png",
                             // fit: BoxFit.cover,
                           ),
                   ),
@@ -124,14 +122,13 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                   onTap: () {
                     videocontroller.uploadVideo(
                         _videoCaption.text.toString(), widget.videofile.path);
-                    print("This is ${widget.videofile.path}");
                   },
                   child: Container(
                     height: IconsSize.h,
                     width: IconsSize.w,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("assets/Icons/photo.png"))),
+                            image: AssetImage("assets/Icons/post.png"))),
                   ),
                 ),
               ),
@@ -147,7 +144,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                     width: IconsSize.w,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("assets/Icons/trash.png"))),
+                            image: AssetImage("assets/Icons/delete.png"))),
                   ),
                 ),
               ),
